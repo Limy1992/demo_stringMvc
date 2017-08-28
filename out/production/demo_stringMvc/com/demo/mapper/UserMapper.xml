@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.UserMapper">
+
+    <sql id="selectStudent">
+        SELECT * FROM t_student
+    </sql>
+
+
+
+    <select id="queryUserAllData" resultType="com.demo.pojo.User">
+        SELECT * FROM t_student;
+    </select>
+
+    <select id="queryUserId" parameterType="Integer" resultType="com.demo.pojo.User">
+        SELECT * FROM t_student WHERE uid = #{uid}
+    </select>
+
+    <select id="queryWhereData" parameterType="String" resultType="com.demo.pojo.User">
+        <include refid="selectStudent"/>
+        WHERE name LIKE "%"#{haha}"%"
+    </select>
+
+    <select id="queryPagerData" parameterType="Integer" resultType="com.demo.pojo.User">
+        <include refid="selectStudent"/>
+        limit #{pager},20
+    </select>
+
+
+</mapper>
